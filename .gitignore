@@ -136,3 +136,4 @@ dmypy.json
 
 # VS Code workspace
 disaster_messages.code-workspace
+.DS_Store

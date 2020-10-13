@@ -1,13 +1,27 @@
 # disaster_messages_categorization
 
 # Purpose
-A web application that categorizes messages sent during disasters around the world so that relevant organizations could respond to them
+A web application that categorizes messages sent during disasters around the world so that relevant organizations could respond to them.
+The app is hosted at ...
 
 # Data
 The training data comes from Figure Eight's (Aspen) dataset that can be found at https://appen.com/datasets/combined-disaster-response-data. It is a collection of thousands of messages collected during natural disasters from various sources
 
 # Usage
-A link to a web app will be added soon. In order to use the code and deploy the app locally please download from Github using `git clone https://github.com/alibekU/disaster_messages_categorization.git`
+In order to use the code and deploy the app locally please download from Github using `git clone https://github.com/alibekU/disaster_messages_categorization.git`
+After downloading, go to the the 'disaster_messages_categorization' folder and:
+1. Run the following commands in the project's root directory to set up your database and model.
+
+    - To run ETL pipeline that cleans data and stores in database
+        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+    - To run ML pipeline that trains classifier and saves
+        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+
+2. Run the following command in the app's directory to run your web app.
+    `python run.py`
+
+3. Go to http://0.0.0.0:3001/
+
 
 # Project structure 
 TBD
