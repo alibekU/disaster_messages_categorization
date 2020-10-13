@@ -13,6 +13,7 @@ A link to a web app will be added soon. In order to use the code and deploy the 
 TBD
 
 # Requirements
+Listed in requirements.txt file:
 click==7.1.2
 Flask==1.1.2
 itsdangerous==1.1.0
