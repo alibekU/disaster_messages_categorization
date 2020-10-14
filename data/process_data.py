@@ -45,14 +45,18 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    # replace nulls in the 'original' column with '' as the rows still have message in English and we do not need to drop them
+    df['original'] = df['original'].fillna('')
+    #drop nulls
+    df = df.dropna()
     # drop duplicates
-    df = df.drop_duplicates()
-    
+    df = df.drop_duplicates(subset=['message'])
+
     return df
 
 def save_data(df, database_filename):
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql('Messages', engine, index=False)  
+    df.to_sql('Messages', engine, index=False, if_exists='replace')  
 
 
 def main():
