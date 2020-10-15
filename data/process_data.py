@@ -35,6 +35,12 @@ def load_data(messages_filepath, categories_filepath):
         # convert column from string to numeric
         categories_new[column] = pd.to_numeric(categories_new[column])
 
+        # convert values greater than 1 to 1 as we have classification task
+        categories_new[column] = categories_new[column].apply(lambda x: 1 if x > 1 else x)
+
+    # drop 'child_alone' category as it has all zeroes
+    categories_new.drop(columns=['child_alone'], inplace=True)
+
     # drop the original categories column from `df`
     df.drop(columns=['categories'], inplace=True)
 
