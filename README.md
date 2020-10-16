@@ -32,18 +32,18 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
-        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
+        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/Disaster_response.db`
     - To run ML pipeline that trains classifier and saves
-        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+        `python models/train_classifier.py data/Disaster_response.db models/classifier.pkl`
 
-2. Run the following command in the app's directory to run your web app.
+2. Go to the app/ directory and run the following command to launch your web app.
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
 
 # Author 
-Alibek Utyubayev
-Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
+- Alibek Utyubayev
+- Link to Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
 
 # Credits
 Udacity Data Scientist Nano-Degree for the project structure and starter code
@@ -59,9 +59,11 @@ Listed in requirements.txt file:
 - nltk==3.5
 - numpy==1.19.2
 - pandas==1.1.3
+- plotly==4.11.0
 - python-dateutil==2.8.1
 - pytz==2020.1
 - regex==2020.10.11
+- retrying==1.3.3
 - scikit-learn==0.23.2
 - scipy==1.5.2
 - six==1.15.0
