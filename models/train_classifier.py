@@ -23,7 +23,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import classification_report, precision_recall_fscore_support, f1_score
 from scipy.stats import gmean
-from models.support_functions import tokenize
+from support.support_functions import tokenize
 import re
 import pickle
 import numpy as np

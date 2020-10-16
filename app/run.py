@@ -10,7 +10,7 @@ from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
-from models.support_functions import tokenize
+from support.support_functions import tokenize
 
 
 app = Flask(__name__)
