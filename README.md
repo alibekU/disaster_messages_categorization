@@ -13,7 +13,7 @@
 
 # Purpose
 A web application that can categorize messages into 36 related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
-The app is hosted at ...
+The app is hosted at https://disaster-message-category.herokuapp.com/
 
 # Data
 The training data comes from Figure Eight's (Aspen) dataset that can be found at https://appen.com/datasets/combined-disaster-response-data. It is a dataset of thousands of messages (more than 26 000) collected during natural disasters from various sources.
@@ -42,8 +42,7 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
 3. Go to http://0.0.0.0:3001/
 
 # Author 
-- Alibek Utyubayev
-- Link to Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
+- Alibek Utyubayev. Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
 
 # Credits
 Udacity Data Scientist Nano-Degree for the project structure and starter code
