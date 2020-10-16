@@ -23,6 +23,7 @@ from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.metrics import classification_report, precision_recall_fscore_support, f1_score
 from scipy.stats import gmean
+from models.support_functions import tokenize
 import re
 import pickle
 import numpy as np
@@ -51,35 +52,6 @@ def load_data(database_filepath):
     Y = df[df.columns[4:]]
     categories = Y.columns
     return X, Y, categories
-
-def tokenize(text):
-    '''
-        tokenize() - function that tokenizes a given English text. Will be used in ML pipeline to prepare text.
-        Input:
-            text -  a string to tokenize
-        Output:
-            clean_tokens - a list of cleaned tokens
-    '''
-    # url pattern
-    url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-    # detect urls and replace them with some placeholders
-    detected_urls = re.findall(url_regex, text)
-    for url in detected_urls:
-        text = text.replace(url, "urlplaceholder")
-
-    # break down text into separate words - tokens
-    tokens = word_tokenize(text)
-    # initialize a lemmatizer
-    lemmatizer = WordNetLemmatizer()
-
-    # lemmatize each token, strip it from whitespaces and convert to lower case
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        # then append each "clean" token into output list
-        clean_tokens.append(clean_tok)
-
-    return clean_tokens
 
 
 def build_model():
