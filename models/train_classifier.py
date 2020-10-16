@@ -21,7 +21,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import classification_report, precision_recall_fscore_support, f1_score, print(cv_ada.best_params_)
+from sklearn.metrics import classification_report, precision_recall_fscore_support, f1_score
 from scipy.stats import gmean
 import re
 import pickle
@@ -45,6 +45,7 @@ def load_data(database_filepath):
     # load data from database
     engine = create_engine('sqlite:///'+ database_filepath)
     df = pd.read_sql_table('Messages', engine)
+    engine.dispose()
 
     X = df['message']
     Y = df[df.columns[4:]]
@@ -140,7 +141,9 @@ def save_model(model, model_filepath):
         Output:
             None
     '''
-    pickle.dump(model, open(model_filepath, 'wb'))
+    file_pkl = open(model_filepath, 'wb')
+    pickle.dump(model, file_pkl)
+    file_pkl.close()
     return None
 
 
