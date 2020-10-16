@@ -1,3 +1,15 @@
+'''
+    process_data.py - ETL processes for Disaster Messages Categorization web app.
+    Code to extract and transform data from csv files and then load in sqlite database for ML training pipeline later.
+    Author: Alibek Utyubayev.
+
+    Usage:
+        Need to pass following arguments as sys.argv to the program:
+            messages_filepath -  a string with a filepath to a CSV file with messages to train ML model
+            categories_filepath - a string with a filepath to a CSV file with labels for the messages to train ML model
+            database_filepath - a string with a filepath to a sqllite database file where data should be stored. If it does not exist, then a new one will be created 
+'''
+
 # import libraries
 import pandas as pd
 from sqlalchemy import create_engine
@@ -5,6 +17,15 @@ import sys
 
 
 def load_data(messages_filepath, categories_filepath):
+    '''
+        load_data() - function that creates a Pandas dataframe from given CSV files
+        Input:
+            messages_filepath -  a string with a filepath to a CSV file with messages to train ML model
+            categories_filepath - a string with a filepath to a CSV file with labels for the messages to train ML model
+        Output:
+            df - a Pandas dataframe with messages and categories, where each category is a column which contains 1 if a message (row) is in the category and 0 otherwise
+    '''
+
     # load messages dataset
     messages = pd.read_csv(messages_filepath)
     
@@ -51,6 +72,13 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    '''
+        clean_data() - function that cleanes a Pandas dataframe for future storage and analysis
+        Input:
+            df - a Pandas dataframe with messages and categories (labels)
+        Output:
+            df - a cleaned Pandas dataframe with messages and categories
+    '''
     # replace nulls in the 'original' column with '' as the rows still have message in English and we do not need to drop them
     df['original'] = df['original'].fillna('')
     #drop nulls
@@ -61,11 +89,26 @@ def clean_data(df):
     return df
 
 def save_data(df, database_filename):
+    '''
+        save_data() - function that saves a Pandas dataframe into sqlite database
+        Input:
+            df -  a Pandas dataframe with data to save
+            database_filename - a string with a filepath to a sqllite database file where data should be stored. If it does not exist, then a new one will be created 
+        Output:
+            None
+    '''
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql('Messages', engine, index=False, if_exists='replace')  
 
 
 def main():
+    '''
+        main() - function that performs an ETL process on messages and categories data
+        Input:
+            None the function, but need input as system arguments to the program
+        Output:
+            None
+    '''
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
