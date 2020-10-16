@@ -86,7 +86,24 @@ def build_model():
     '''
         build_model() - function that creates a Pandas dataframe frim given CSV files
         Input:
-            None as model's parameters were tuned and optimized in a Jupyter Notebook 'ML Pipeline Preparation' and here we simply recreate the best model
+            None as model's parameters were tuned and optimized in a Jupyter Notebook 'ML Pipeline Preparation' and here we simply recreate the best model.
+            Here is the code used for parameter tuning:
+            parameters = {
+                #'vector__max_df' : [0.5, 1],
+                #'vector__ngram_range': [(1,1), (1,2)],
+                #'tfidf__use_idf': [True, False],
+                #'vector__stop_words': [None, 'english'],
+                'clf__estimator__learning_rate': [0.5, 1]
+                'clf__estimator__n_estimators': [50, 75],
+                'clf__estimator__base_estimator__max_depth': [1,2]
+            }
+            
+            # Using 'f1_macro' as a scorer because it penalizes for low f1 scores in small categories, unlike other scorers 
+            # that will show higher results because of better f1 scorers in large categories 
+            cv_ada = GridSearchCV(pipeline_ada, param_grid = parameters, n_jobs=-1, cv=3, scoring='f1_macro')
+            cv_ada.fit(X_train, y_train)
+            y_pred  = cv_ada.predict(X_test)
+
         Output:
             model - a sklearn Pipeline object, model to be trained on existing data and predict categories for the new data
     '''
