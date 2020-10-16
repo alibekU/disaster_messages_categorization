@@ -89,11 +89,13 @@ def build_model():
         Output:
             model - a sklearn Pipeline object, model to be trained on existing data and predict categories for the new data
     '''
-    model = Pipeline([
-        ('vector', CountVectorizer(tokenizer=tokenize)),
-        ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(LogisticRegression(class_weight='balanced', n_jobs=-1),n_jobs=-1))
-    ])
+    model = Pipeline(steps=[('vector',
+                 CountVectorizer(tokenizer=tokenize)),
+                ('tfidf', TfidfTransformer()),
+                ('clf',
+                 MultiOutputClassifier(estimator=AdaBoostClassifier(base_estimator=DecisionTreeClassifier(class_weight='balanced',
+                                                                                                          max_depth=1),
+                                                                    learning_rate=0.5)))])
     return model
 
 
