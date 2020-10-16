@@ -1,14 +1,37 @@
 # disaster_messages_categorization
 
+# Table of contents
+[Purpose](#purpose)
+[Data](#data)
+[Project structure](#project_structure)
+[Installation](#installation)
+[Usage](#usage)
+[Author](#author)
+[Credits](#credits)
+[Requirements](#requirements)
+
+
+<a name="purpose"/>
 # Purpose
 A web application that categorizes messages sent during disasters around the world so that relevant organizations could respond to them.
 The app is hosted at ...
 
+<a name="data"/>
 # Data
 The training data comes from Figure Eight's (Aspen) dataset that can be found at https://appen.com/datasets/combined-disaster-response-data. It is a collection of thousands of messages collected during natural disasters from various sources
 
+<a name="project_structure"/>
+# Project structure 
+TBD
+
+<a name="installation"/>
+# Installation
+1. In order to install the code and deploy the app locally please download from Github: `git clone https://github.com/alibekU/disaster_messages_categorization.git`.
+2. You may want to set up a new virtual environment: `python3 venv -m environment-name-of-your-choice`
+3. Then, use pip to install all the needed packages: ``
+
+<a name="usage"/>
 # Usage
-In order to use the code and deploy the app locally please download from Github using `git clone https://github.com/alibekU/disaster_messages_categorization.git`
 After downloading, go to the the 'disaster_messages_categorization' folder and:
 1. Run the following commands in the project's root directory to set up your database and model.
 
@@ -22,10 +45,16 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
 
 3. Go to http://0.0.0.0:3001/
 
+<a name="author"/>
+# Author 
+Alibek Utyubayev
+Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
 
-# Project structure 
-TBD
+<a name="credits"/>
+# Credits
+Udacity Data Scientist Nano-Degree for the project structure and starter code
 
+<a name="requirements"/>
 # Requirements
 Listed in requirements.txt file:
 click==7.1.2
