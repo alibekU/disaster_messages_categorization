@@ -3,6 +3,13 @@
     Author: Alibek Utyubayev
 '''
 
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+import re
+
+import nltk
+nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
+
 def tokenize(text):
     '''
         tokenize() - function that tokenizes a given English text. Will be used in ML pipeline to prepare text.

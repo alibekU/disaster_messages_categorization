@@ -10,39 +10,10 @@ from flask import render_template, request, jsonify
 from plotly.graph_objs import Bar
 import joblib
 from sqlalchemy import create_engine
-#from app.support_functions import tokenize
+from support_functions import tokenize
 
 
 app = Flask(__name__)
-
-def tokenize(text):
-    '''
-        tokenize() - function that tokenizes a given English text. Will be used in ML pipeline to prepare text.
-        Input:
-            text -  a string to tokenize
-        Output:
-            clean_tokens - a list of cleaned tokens
-    '''
-    # url pattern
-    url_regex = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-    # detect urls and replace them with some placeholders
-    detected_urls = re.findall(url_regex, text)
-    for url in detected_urls:
-        text = text.replace(url, "urlplaceholder")
-
-    # break down text into separate words - tokens
-    tokens = word_tokenize(text)
-    # initialize a lemmatizer
-    lemmatizer = WordNetLemmatizer()
-
-    # lemmatize each token, strip it from whitespaces and convert to lower case
-    clean_tokens = []
-    for tok in tokens:
-        clean_tok = lemmatizer.lemmatize(tok).lower().strip()
-        # then append each "clean" token into output list
-        clean_tokens.append(clean_tok)
-
-    return clean_tokens
 
 # load data
 engine = create_engine('sqlite:///../data/Disaster_response.db')
