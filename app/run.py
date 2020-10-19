@@ -51,27 +51,6 @@ def index():
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
-          # Correlation between classes
-        {
-            'data':[
-                Go.Heatmap(
-                    x = category_names,
-                    y = category_names,
-                    z= corr_df
-                )
-            ],
-            
-            'layout': {
-                'title': "Correlation between categories",
-                'height':800,
-                'yaxis': {
-                    'automargin': True
-                },
-                'xaxis': {
-                    'automargin': True
-                }
-            }
-        },
         # Class distribution
         {
             'data': [
@@ -79,7 +58,7 @@ def index():
                     x=sums_categories,
                     y=category_names_sorted,
                     orientation='h',
-                    marker=dict(color = sums_categories)
+                    marker=dict(color = sums_categories,colorscale='YlGnBu')
                 )        
             ],
 
@@ -95,12 +74,35 @@ def index():
                 }
             }
         },
-      # Genre distribution
+        # Correlation between classes
+        {
+            'data':[
+                Go.Heatmap(
+                    x=category_names,
+                    y=category_names,
+                    z=corr_df,
+                    colorscale='YlGnBu'
+                )
+            ],
+            
+            'layout': {
+                'title': "Correlation between categories",
+                'height':800,
+                'yaxis': {
+                    'automargin': True
+                },
+                'xaxis': {
+                    'automargin': True
+                }
+            }
+        },
+        # Genre distribution
         {
             'data': [
                 Go.Bar(
                     x=genre_names,
-                    y=genre_counts
+                    y=genre_counts,
+                    marker=dict(color='yellowgreen')
                 )
             ],
 
