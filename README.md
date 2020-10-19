@@ -15,6 +15,11 @@
 A web application that can categorize messages into 36 related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
 The app is hosted at https://disaster-message-category.herokuapp.com/
 
+[Web Application Interface](images/screenshot1)
+[Detected message categories are highlighted](images/screenshot2)
+[Detected message categories are highlighted](images/screenshot3)
+
+
 # Data
 The training data comes from Figure Eight's (Aspen) dataset that can be found at https://appen.com/datasets/combined-disaster-response-data. It is a dataset of thousands of messages (more than 26 000) collected during natural disasters from various sources.
 For each message there are 36 possible categories (like 'medical_help', 'weather_related' and etc.)
@@ -36,7 +41,7 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
     - To run ML pipeline that trains classifier and saves
         `python models/train_classifier.py data/Disaster_response.db models/classifier.pkl`
 
-2. Go to the app/ directory and run the following command to launch your web app.
+2. **Go to the app/ directory** and run the following command to launch your web app.
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
