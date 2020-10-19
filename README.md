@@ -15,9 +15,9 @@
 A web application that can categorize messages into 36 related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
 The app is hosted at https://disaster-message-category.herokuapp.com/
 
-[Web Application Interface](images/screenshot1)
-[Detected message categories are highlighted](images/screenshot2)
-[Detected message categories are highlighted](images/screenshot3)
+[Web Application Interface](images/screenshot1.png)
+[Detected message categories are highlighted](images/screenshot2.png)
+[Detected message categories are highlighted](images/screenshot3.png)
 
 
 # Data
