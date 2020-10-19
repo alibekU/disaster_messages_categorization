@@ -58,15 +58,16 @@ def build_model():
         build_model() - function that creates a Pandas dataframe frim given CSV files
         Input:
             None as model's parameters were tuned and optimized in a Jupyter Notebook 'ML Pipeline Preparation' and here we simply recreate the best model.
+            This GridSearch on the model will take a lot of time, so I've not included running it in this script, only the commednted code.
             Here is the code used for parameter tuning:
             parameters = {
                 #'vector__max_df' : [0.5, 1],
                 #'vector__ngram_range': [(1,1), (1,2)],
                 #'tfidf__use_idf': [True, False],
                 #'vector__stop_words': [None, 'english'],
-                'clf__estimator__learning_rate': [0.5, 1]
-                'clf__estimator__n_estimators': [50, 75],
-                'clf__estimator__base_estimator__max_depth': [1,2]
+                'clf__estimator__learning_rate': [0.2, 0.3],
+                'clf__estimator__n_estimators': [100, 200]
+                #'clf__estimator__base_estimator__max_depth': [1,2]
             }
             
             # Using 'f1_macro' as a scorer because it penalizes for low f1 scores in small categories, unlike other scorers 
@@ -84,7 +85,7 @@ def build_model():
                 ('clf',
                  MultiOutputClassifier(estimator=AdaBoostClassifier(base_estimator=DecisionTreeClassifier(class_weight='balanced',
                                                                                                           max_depth=1),
-                                                                    learning_rate=0.5)))])
+                                                                    learning_rate=0.2, n_estimators=100)))])
     return model
 
 
