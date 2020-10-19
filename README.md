@@ -2,10 +2,12 @@
 
 # Table of contents
 - [Purpose](#purpose)
+- [Web Application](#web-application)
 - [Data](#data)
 - [Project structure](#project-structure)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Discussion of the results](#discussion-of-the-results)
 - [Author](#author)
 - [Credits](#credits)
 - [Requirements](#requirements)
@@ -13,11 +15,14 @@
 
 # Purpose
 A web application that can categorize messages into 36 related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
-The app is hosted at https://disaster-message-category.herokuapp.com/
 
+# Web Application
+The app is hosted at https://disaster-message-category.herokuapp.com/
+Instructions:
+1. Enter a message to classify in the search box and hit 'Classify Message' buttong 
 ![Web Application Interface](images/screenshot1.png)
+2. The application returns the list of categories with relevant categories highlighted
 ![Detected message categories are highlighted](images/screenshot2.png)
-![Detected message categories are highlighted](images/screenshot3.png)
 
 
 # Data
@@ -45,6 +50,9 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
+# Discussion of the results]
+TBD
 
 # Author 
 - Alibek Utyubayev. Linkedin: https://www.linkedin.com/in/alibek-utyubayev-74402721/
