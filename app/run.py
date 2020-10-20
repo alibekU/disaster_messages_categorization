@@ -11,14 +11,31 @@ import plotly.graph_objs as Go
 import numpy as np
 import joblib
 from sqlalchemy import create_engine
-from support_functions import tokenize, cramers_v, create_heatmap_data
-
 
 app = Flask(__name__)
 
 # load data
 engine = create_engine('sqlite:///../data/Disaster_response.db')
 df = pd.read_sql_table('Messages', engine)
+
+# extract sums_categories from db
+sums_categories = pd.read_sql_table('Category_Counts', engine)
+
+# get the names of the categories in the sorted order
+category_names_sorted = list(sums_categories.index)
+
+# extract corr_df
+corr_df = pd.read_sql_table('Category_Correlations', engine)
+
+# get the names of the categories in the original order
+category_names = corr_df.columns.to_list()
+
+# extract genre_counts
+genre_counts = pd.read_sql_table('Genre_Counts', engine)
+
+# get the names of the genres
+genre_names = list(genre_counts.index)
+
 engine.dispose()
 
 # load model
@@ -30,24 +47,6 @@ model = joblib.load("../models/classifier.pkl")
 @app.route('/index')
 def index():
     
-    # extract data needed for visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
-
-    # get the labels - Y dataframe - for visuals
-    Y = df[df.columns[4:]]
-    # get the category names
-    category_names = Y.columns.to_list()
-    # sum the messages for each category and sort 
-    sums_categories = Y.sum(axis=0).sort_values()
-    # get the names of the categories in the sorted order
-    category_names_sorted = list(sums_categories.index)
-    
-    # create a matrix of correlations btw categories for heatmap graph
-    corr = create_heatmap_data(Y, cramers_v)
-    # create a dataframe from the matrix
-    corr_df = pd.DataFrame(data=corr, index=category_names, columns=category_names)
-   
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
