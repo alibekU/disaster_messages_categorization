@@ -137,7 +137,6 @@ def create_heatmap_data(arr, func):
         where a,b,c are the first 3 elements or columns of a Pandas dataframe 'arr' that has n elements/columns,
         and func is some function that is applied to the elements/columns of arr pairwise 
 
-        Credits to https://stackoverflow.com/questions/57167806/most-effective-method-to-create-and-fill-a-numpy-matrix-from-an-array
         Input:
             arr - a Pandas dataframe of n elements or n columns 
             func - a function that takes 2 elements or columns of arr and returns some result
