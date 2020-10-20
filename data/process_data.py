@@ -91,18 +91,19 @@ def clean_data(df):
 
     return df
 
-def save_data(df, table_name, database_filename):
+def save_data(df, table_name, database_filename, need_index=False):
     '''
         save_data() - a function that saves a Pandas dataframe into sqlite database
         Input:
             df -  a Pandas dataframe with data to save
             table_name - a string with the name of the table where df will be stored
             database_filename - a string with a filepath to a sqllite database file where data should be stored. If it does not exist, then a new one will be created 
+            need_index - a boolean, False by default, if True - saves the index in the DB as well
         Output:
             None
     '''
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql(table_name, engine, index=False, if_exists='replace')  
+    df.to_sql(table_name, engine, index=need_index, if_exists='replace')  
 
  # finding correlation between classes
 def cramers_v(x, y):
@@ -190,20 +191,21 @@ def main():
 
         # --- Compute and save data for visuals to the DB to avoid computing it everytime a page is loaded ---
         print('Saving data for the web app visuals...\n    DATABASE: {}'.format(database_filepath))
-        # get the genre distribution
-        genre_counts = df.groupby('genre').count()['message']
-        # save the genre distribution
-        save_data(genre_counts, "Genre_Counts", database_filepath)
-
         # get the labels - Y dataframe - for visuals
         Y = df[df.columns[4:]]
         # get the names of the categories
         category_names = Y.columns.to_list()
+
+        # get the genre distribution
+        genre_counts = df.groupby('genre').count()['message']
+
+        # save the genre distribution
+        save_data(genre_counts, "Genre_Counts", database_filepath, need_index=True)
        
         # get the category distribution data
         sums_categories = Y.sum(axis=0).sort_values()
         #save the category distribution data
-        save_data(sums_categories, "Category_Counts", database_filepath)
+        save_data(sums_categories, "Category_Counts", database_filepath, need_index=True)
         
         # create a matrix of correlations btw categories for heatmap graph
         corr = create_heatmap_data(Y, cramers_v)
