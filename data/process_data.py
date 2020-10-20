@@ -91,7 +91,7 @@ def clean_data(df):
 
     return df
 
-def save_data(df, table_name, database_filename, need_index=False):
+def save_data(df, table_name, database_filename):
     '''
         save_data() - a function that saves a Pandas dataframe into sqlite database
         Input:
@@ -103,7 +103,7 @@ def save_data(df, table_name, database_filename, need_index=False):
             None
     '''
     engine = create_engine('sqlite:///' + database_filename)
-    df.to_sql(table_name, engine, index=need_index, if_exists='replace')  
+    df.to_sql(table_name, engine, index=False, if_exists='replace')  
 
  # finding correlation between classes
 def cramers_v(x, y):
@@ -197,15 +197,19 @@ def main():
         category_names = Y.columns.to_list()
 
         # get the genre distribution
-        genre_counts = df.groupby('genre').count()['message']
-
+        genre_counts = df.groupby('genre').size().reset_index(name='Count')
+        genre_counts.rename(columns={'genre': 'Genre'}, inplace=True)
         # save the genre distribution
-        save_data(genre_counts, "Genre_Counts", database_filepath, need_index=True)
+        save_data(genre_counts, "Genre_Counts", database_filepath)
        
         # get the category distribution data
-        sums_categories = Y.sum(axis=0).sort_values()
+        sums_categories = Y.sum(axis=0).reset_index(name='Count')
+        # sort by the count
+        sums_categories = sums_categories.sort_values(by=['Count'])
+        # rename index column
+        sums_categories.rename(columns={'index': 'Category'}, inplace=True)
         #save the category distribution data
-        save_data(sums_categories, "Category_Counts", database_filepath, need_index=True)
+        save_data(sums_categories, "Category_Counts", database_filepath)
         
         # create a matrix of correlations btw categories for heatmap graph
         corr = create_heatmap_data(Y, cramers_v)
