@@ -21,9 +21,6 @@ df = pd.read_sql_table('Messages', engine)
 # extract sums_categories from db
 sums_categories = pd.read_sql_table('Category_Counts', engine)
 
-# get the names of the categories in the sorted order
-category_names_sorted = list(sums_categories.index)
-
 # extract corr_df
 corr_df = pd.read_sql_table('Category_Correlations', engine)
 
@@ -32,9 +29,6 @@ category_names = corr_df.columns.to_list()
 
 # extract genre_counts
 genre_counts = pd.read_sql_table('Genre_Counts', engine)
-
-# get the names of the genres
-genre_names = list(genre_counts.index)
 
 engine.dispose()
 
@@ -54,10 +48,10 @@ def index():
         {
             'data': [
                 Go.Bar(
-                    x=sums_categories,
-                    y=category_names_sorted,
+                    x=sums_categories['Count'],
+                    y=sums_categories['Category'],
                     orientation='h',
-                    marker=dict(color = sums_categories,colorscale='YlGnBu')
+                    marker=dict(color=sums_categories['Count'], colorscale='YlGnBu')
                 )        
             ],
 
@@ -99,8 +93,8 @@ def index():
         {
             'data': [
                 Go.Bar(
-                    x=genre_names,
-                    y=genre_counts,
+                    x=genre_counts['Genre'],
+                    y=genre_counts['Count'],
                     marker=dict(color='yellowgreen')
                 )
             ],
