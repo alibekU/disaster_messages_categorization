@@ -58,7 +58,7 @@ def build_model():
         build_model() - function that creates a Pandas dataframe frim given CSV files
         Input:
             None as model's parameters were tuned and optimized in a Jupyter Notebook 'ML Pipeline Preparation' and here we simply recreate the best model.
-            This GridSearch on the model will take a lot of time, so I've not included running it in this script, only the commednted code.
+            This GridSearch on the model will take a lot of time, so I've not included running it in this script, only the commented code.
             Here is the code used for parameter tuning:
             parameters = {
                 #'vector__max_df' : [0.5, 1],
