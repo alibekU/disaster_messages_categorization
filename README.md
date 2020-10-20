@@ -14,7 +14,7 @@
 
 
 # Purpose
-A web application that can categorize messages into 36 related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
+A web application that can categorize messages into 36 independent related to disaster response themes (like 'medical_help', 'weather_related' and etc.) based on training data messages that were sent during disasters around the world.
 
 # Web Application
 The app is hosted at https://disaster-message-category.herokuapp.com/ 
@@ -31,7 +31,28 @@ The training data comes from Figure Eight's (Aspen) dataset that can be found at
 For each message there are 36 possible categories (like 'medical_help', 'weather_related' and etc.)
 
 # Project structure 
-TBD
+- data\
+    - process_data.py - ETL for the data: from csv files to sqlite db, plus computing and saving data for web app visuals in the db. Invoked only once before web app deployment.
+    - messages.csv - a CSV with messages
+    - categories.csv - a CSV with labels - message categories
+    - Disaster_response.db - an sqlite DB file
+- models\
+    - train_classifier.py - ML pipeline that trains and tunes a model for classification, and then stores the model in a file for future use by web app. Invoked only once before web app deployment.
+    - support_functions.py - additional functions
+    - classifier.pkl - a Pickle file, saved classification model
+- app\
+    - run.py - the main script of Flask web app
+    - support_functions.py - additional functions
+    - templates\
+        - master.html - main html page template
+        - go.html - a template for displaying result of classification - list of categories with highlightment of relevant ones
+- images\ - pictures for the README file
+- requirements.txt - a list of required PIP packages, result of `pip freeeze` command
+- nltk.txt - a list of NLTK modules to be downloaded at Heroku server for usage in the code
+- Procfile - code for Flask app launch at Heroku
+- ML Pipeline Preparation.ipynb - a Jupyter notebook with ML pipeline exploration
+- README.md - readme file
+
 
 # Installation
 1. In order to install the code and deploy the app locally please download from Github: `git clone https://github.com/alibekU/disaster_messages_categorization.git`.
