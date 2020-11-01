@@ -50,27 +50,27 @@ After downloading, go to the the 'disaster_messages_categorization' folder and:
 3. Go to http://0.0.0.0:3001/
 
 # Project structure 
-data\<br/>
--process_data.py - ETL for the data: from csv files to sqlite db, plus computing and saving data for web app visuals in the db. Invoked only once before web app deployment.<br/>
--messages.csv - a CSV with messages<br/>
--categories.csv - a CSV with labels - message categories<br/>
--Disaster_response.db - an sqlite DB file<br/>
-models\<br/>
--train_classifier.py - ML pipeline that trains and tunes a model for classification, and then stores the model in a file for future use by web app. Invoked only once before web app deployment.<br/>
--support_functions.py - additional functions<br/>
--classifier.pkl - a Pickle file, saved classification model<br/>
-app\<br/>
--run.py - the main script of Flask web app<br/>
--support_functions.py - additional functions<br/>
--templates\<br/>
- --master.html - main html page template<br/>
- --go.html - a template for displaying result of classification - list of categories with highlightment of relevant ones<br/>
-images\ - pictures for the README file<br/>
--requirements.txt - a list of required PIP packages, result of `pip freeeze` command<br/>
--nltk.txt - a list of NLTK modules to be downloaded at Heroku server for usage in the code<br/>
--Procfile - code for Flask app launch at Heroku<br/>
--ML Pipeline Preparation.ipynb - a Jupyter notebook with ML pipeline exploration<br/>
--README.md - readme file<br/>
+data\ <br/>
+-process_data.py - ETL for the data: from csv files to sqlite db, plus computing and saving data for web app visuals in the db. Invoked only once before web app deployment. <br/>
+-messages.csv - a CSV with messages <br/>
+-categories.csv - a CSV with labels - message categories <br/>
+-Disaster_response.db - an sqlite DB file <br/>
+models\ <br/>
+-train_classifier.py - ML pipeline that trains and tunes a model for classification, and then stores the model in a file for future use by web app. Invoked only once before web app deployment. <br/>
+-support_functions.py - additional functions< br/>
+-classifier.pkl - a Pickle file, saved classification model <br/>
+app\ <br/>
+-run.py - the main script of Flask web app <br/>
+-support_functions.py - additional functions <br/>
+-templates\ <br/>
+ --master.html - main html page template <br/>
+ --go.html - a template for displaying result of classification - list of categories with highlightment of relevant ones <br/>
+images\ - pictures for the README file <br/>
+-requirements.txt - a list of required PIP packages, result of `pip freeeze` command <br/>
+-nltk.txt - a list of NLTK modules to be downloaded at Heroku server for usage in the code <br/>
+-Procfile - code for Flask app launch at Heroku <br/>
+-ML Pipeline Preparation.ipynb - a Jupyter notebook with ML pipeline exploration <br/>
+-README.md - readme file <br/>
 
 # Discussion of the results
 The main focus of this project at this stage is data engineering process - ETL, text processing, ML pipelines and visualization.
